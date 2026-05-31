@@ -485,7 +485,7 @@
 <script>
   // ── STATE ──
   let transactions = JSON.parse(localStorage.getItem('vh_tx') || '[]');
-  let budgets = JSON.parse(localStorage.getItem('vh_budgets') || '{"Food":5000,"Transport":3000,"Shopping":4000,"Utilities":2000}');
+  let budgets = JSON.parse(localStorage.getItem('vh_budgets') || '{}');
   let currentType = 'income';
   let currentPage = 'dashboard';
 
@@ -493,23 +493,6 @@
   let overviewMode = 'daily'; // 'daily' | 'weekly' | 'monthly'
   let viewOffset = 0; // negative = go back
 
-  // Seed data if empty
-  if (transactions.length === 0) {
-    const now = new Date();
-    const m = now.getMonth(), y = now.getFullYear();
-    const seed = [
-      { id: 1, type: 'income', desc: 'Monthly Salary', amount: 50000, date: new Date(y,m,1).toISOString().split('T')[0], cat: 'Salary' },
-      { id: 2, type: 'expense', desc: 'Grocery Shopping', amount: 2400, date: new Date(y,m,3).toISOString().split('T')[0], cat: 'Food' },
-      { id: 3, type: 'expense', desc: 'Electricity Bill', amount: 1200, date: new Date(y,m,5).toISOString().split('T')[0], cat: 'Utilities' },
-      { id: 4, type: 'expense', desc: 'Uber Ride', amount: 350, date: new Date(y,m,7).toISOString().split('T')[0], cat: 'Transport' },
-      { id: 5, type: 'income', desc: 'Freelance Project', amount: 8000, date: new Date(y,m,10).toISOString().split('T')[0], cat: 'Freelance' },
-      { id: 6, type: 'expense', desc: 'Clothes Shopping', amount: 3200, date: new Date(y,m,12).toISOString().split('T')[0], cat: 'Shopping' },
-      { id: 7, type: 'expense', desc: 'Doctor Visit', amount: 800, date: new Date(y,m,14).toISOString().split('T')[0], cat: 'Health' },
-      { id: 8, type: 'expense', desc: 'Netflix & Hotstar', amount: 750, date: new Date(y,m,15).toISOString().split('T')[0], cat: 'Entertainment' },
-    ];
-    transactions = seed;
-    save();
-  }
 
   function save() {
     localStorage.setItem('vh_tx', JSON.stringify(transactions));
